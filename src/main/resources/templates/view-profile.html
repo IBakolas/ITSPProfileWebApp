@@ -147,136 +147,169 @@
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Horizontal Two column</h4>
+                            <h4 class="card-title" th:text="${profile.P_SipProviderName}">Horizontal Two column</h4>
                             <form class="form-sample">
-                                <p class="card-description"> Personal info </p>
+                                <p class="card-description"> Configuration Data </p>
                                 <div class="row">
                                     <div class="col-md-6">
+<!--                                        Domain Name-->
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">First Name</label>
+                                            <label class="col-sm-3 col-form-label">Domain Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
+                                                <input type="text" th:value="${profile.P_SipGwDomainName}" class="form-control" readonly/>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
+<!--                                        Transport Protocol-->
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Last Name</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Gender</label>
+                                            <label class="col-sm-3 col-form-label">Transport Protocol</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
+                                                    <option th:value="${profile.P_SipProviderTransportProtocol}" th:text="${profile.P_SipProviderTransportProtocol}">udp</option>
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
+
+<!--                                    Transport Security-->
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Date of Birth</label>
+                                            <label class="col-sm-3 col-form-label">Transport Security</label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" placeholder="dd/mm/yyyy" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Category</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                    <option>Category3</option>
-                                                    <option>Category4</option>
+                                                <select class="form-control" th:switch="${profile.P_SipProviderSecurity}">
+                                                    <option th:case="'0'" >traditional (udp or tcp)</option>
+                                                    <option th:case="'1'">secure (tls)</option>
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
+
+<!--                                        Media Security-->
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Membership</label>
-                                            <div class="col-sm-4">
-                                                <div class="form-radio">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class="form-radio">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-description"> Address </p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Address 1</label>
+                                            <label class="col-sm-3 col-form-label">Media Security</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">State</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Address 2</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Postcode</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">City</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Country</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option>America</option>
-                                                    <option>Italy</option>
-                                                    <option>Russia</option>
-                                                    <option>Britain</option>
+                                                <select class="form-control" th:switch="${profile.P_SipProviderMediaSecurity}">
+                                                    <option th:case="'0'" >RTP only</option>
+                                                    <option th:case="'1'">SDES only</option>
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Provider Registrar</h4>
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseRegistrar}">
+                                            Use Registrar
+                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderRegistrarIPName}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Port</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderRegistrarPort}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Registration Interval at Provider (sec)</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderReregistrationInt}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Provider Proxy</h4>
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderIPNameProxy}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Port</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderPortProxy}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Provider Outbound Proxy</h4>
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseOutboundProxy}">
+                                            Use Outbound Proxy
+                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderIPNameOutboundPr}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Port</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderPortOutboundProx}" readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -289,136 +322,34 @@
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Horizontal Two column</h4>
+                            <h4 class="card-title">Provider Inbound Proxy</h4>
                             <form class="form-sample">
-                                <p class="card-description"> Personal info </p>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">First Name</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Last Name</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseInboundProxy}">
+                                            Use Inbound Proxy
+                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Gender</label>
+                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                                            <div class="col-sm-9">
-                                                <input class="form-control" placeholder="dd/mm/yyyy" />
+                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderIPNameInboundPr}" readonly/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Category</label>
+                                            <label class="col-sm-3 col-form-label">Port</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                    <option>Category3</option>
-                                                    <option>Category4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Membership</label>
-                                            <div class="col-sm-4">
-                                                <div class="form-radio">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class="form-radio">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-description"> Address </p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Address 1</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">State</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Address 2</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Postcode</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">City</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Country</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option>America</option>
-                                                    <option>Italy</option>
-                                                    <option>Russia</option>
-                                                    <option>Britain</option>
-                                                </select>
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderPortInboundProx}" readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -428,6 +359,85 @@
                     </div>
                 </div>
 
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Provider STUN</h4>
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseStun}">
+                                            Use STUN
+                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderStunServerIPName}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Port</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderStunServerPort}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">CLIP/CLIR</h4>
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseStun}">
+                                            Use STUN
+                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderStunServerIPName}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Port</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderStunServerPort}" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <!-- content-wrapper ends -->
