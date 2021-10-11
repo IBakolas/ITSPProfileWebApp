@@ -405,40 +405,243 @@
                             <h4 class="card-title">CLIP/CLIR</h4>
                             <form class="form-sample">
                                 <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - display part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPFromNameA}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                                <option th:case="'3'">display name</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - user part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPFromAddrS}">
+                                                <option th:case="'0'">call number</option>
+                                                <option th:case="'1'">account</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - domain/host part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfileFromURIDomain}">
+                                                <option th:case="'0'">LocalIPAddr</option>
+                                                <option th:case="'1'">DomainName</option>
+                                                <option th:case="'2'">PublicIPAddr</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseStun}">
-                                            Use STUN
+                                        <label class="form-check-label" th:switch="${profile.P_SipProvProfileRedirNrInFrom}">
+                                            Diversion: From contains original CallingPartyNumber
                                             <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
                                             <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">IP address / Hostname</label>
-                                            <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderStunServerIPName}" readonly/>
-                                            </div>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:switch="${profile.P_SipProvProfileOrigNrInPAI}">
+                                            Diversion: PAI contains original CallingPartyNumber
+                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Asserted-Id header display part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPAssIdA}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                                <option th:case="'3'">display name</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Asserted-Id header user part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPAssIdS}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Port</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderStunServerPort}" readonly/>
-                                            </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Preferred-Id header display part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPPrefNameA}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                                <option th:case="'3'">display name</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Preferred-Id header user part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPPrefAddrS}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in Diversion header display part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfDivNameA}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                                <option th:case="'3'">display name</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in Diversion header user part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfDivAddrS}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in History-Info header user part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfHistInfoNameA}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIR outgoing in From header display part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIRFromNameA}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">call number</option>
+                                                <option th:case="'2'">account</option>
+                                                <option th:case="'3'">anonymous</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIR outgoing in From header user part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIRFromAddrS}">
+                                                <option th:case="'0'">call number</option>
+                                                <option th:case="'1'">account</option>
+                                                <option th:case="'2'">fully anonymous</option>
+                                                <option th:case="'3'">user anonymous</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIR outgoing Privacy header</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIRPrivacy}">
+                                                <option th:case="'0'">omit</option>
+                                                <option th:case="'1'">id</option>
+                                                <option th:case="'2'">user</option>
+                                                <option th:case="'3'">user;ld</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">COLP/TIP supported for outgoing calls</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfileCOLPsupported}">
+                                                <option th:case="'0'">COLP not supported</option>
+                                                <option th:case="'1'">COLP supported</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                     </div>
                 </div>
 
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Security</h4>
+                            <form class="form-sample">
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">UDP mode</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProviderUdpMode}">
+                                                <option th:case="'0'">Symmetric UDP</option>
+                                                <option th:case="'1'">Asymmetric UDP</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Approved Peer Selection</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:switch="${profile.P_SipProvProfApprovedPeerSel}">
+                                                <option th:case="'0'">Trust configured servers only</option>
+                                                <option th:case="'1'">Trust servers received in SIP responses</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
