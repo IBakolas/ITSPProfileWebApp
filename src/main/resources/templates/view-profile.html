@@ -834,11 +834,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">ReRegistration interval after failure (sec):</label>
                                     <div class="col-sm-9">
                                         <input type="text" th:value="${profile.P_SipProvProfRegFailRetryTime}" class="form-control" readonly/>
                                     </div>
+                                </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
@@ -1076,14 +1078,14 @@
                                     </div>
                                 </div>
 
-
+                                <div class="row">
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Send automatic 183 response timer (sec):</label>
                                     <div class="col-sm-9">
                                         <input type="text" th:value="${profile.P_SipProvProfileProgressTimer}" class="form-control" readonly/>
                                     </div>
                                 </div>
-
+                                </div>
                                 <div class="row">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label"> UDP-Keep Alive:</label>
@@ -1096,14 +1098,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="row">
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Keep Alive interval for OPTIONS (sec):</label>
                                     <div class="col-sm-9">
                                         <input type="text" th:value="${profile.P_SipProvProfOptKeepAliveTimer}" class="form-control" readonly/>
                                     </div>
                                 </div>
-
+                                </div>
                                 <div class="row">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Reregistration on OPTIONS Failure:</label>
