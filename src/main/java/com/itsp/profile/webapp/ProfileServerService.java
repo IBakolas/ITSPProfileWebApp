@@ -40,6 +40,15 @@ public class ProfileServerService {
     }
 
 
+    public boolean updateRepo(ITSPProfile provider) {
+        boolean res = true;
+
+        // Profile already exists just update it
+        res = repo.updateProfileRepo(provider);
+
+        return res;
+    }
+
     public void test()
     {
 

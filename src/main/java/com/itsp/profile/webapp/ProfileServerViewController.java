@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import java.util.ArrayList;
 
 @Controller
@@ -44,6 +46,22 @@ public class ProfileServerViewController {
         model.addAttribute("profiles", profiles);
 
         return "edit-profile";
+    }
+
+    @GetMapping(path="/update-profiles-repo")
+    public String update_profiles_repo(@ModelAttribute ITSPProfile profile, Model model) {
+
+        // Maybe this is not needed
+        // model.addAttribute("profile", profile);
+        if(this.profileserverservice.updateRepo(profile))
+        {
+            return "Success";
+        }
+        else
+        {
+            return "Error";
+        }
+
     }
 }
 

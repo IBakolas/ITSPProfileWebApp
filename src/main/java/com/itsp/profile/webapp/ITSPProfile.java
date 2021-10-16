@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ITSPProfile {
 
-    private String P_SipProviderId = "1";
+    private String P_SipProviderId = "0x1";
 
     private String P_SipProviderBaseId = "0";
 
@@ -1345,6 +1345,114 @@ public class ITSPProfile {
                 e.printStackTrace();
             }
         }
+    }
+
+    public String toPersistancyString() {
+        return  P_SipProviderId +
+                "|" + P_SipProviderBaseId  +
+                "|" + P_SipProviderActive +
+                "|" + P_SipProviderName  +
+                "|" + P_SipGwDomainName  +
+                "|" + P_SipProviderInterfaceSelect  +
+                "|" + P_SipProviderIPVersion  +
+                "|" + P_SipProviderTransportProtocol  +
+                "|" + P_SipProviderUdpMode  +
+                "|" + P_SipProviderSignalProtocol +
+                "|" + P_SipProviderSecurity  +
+                "|" + P_SipProviderMediaSecurity  +
+                "|" + P_SipProviderSuppSecurity  +
+                "|" + P_SipProviderUseRegistrar +
+                "|" + P_SipProviderRegistrarIPName +
+                "|" + P_SipProviderRegistrarPort  +
+                "|" + P_SipProviderReregistrationInt  +
+                "|" + P_SipProviderUseProxy +
+                "|" + P_SipProviderIPNameProxy  +
+                "|" + P_SipProviderPortProxy  +
+                "|" + P_SipProviderUseOutboundProxy +
+                "|" + P_SipProviderIPNameOutboundPr  +
+                "|" + P_SipProviderPortOutboundProx  +
+                "|" + P_SipProviderUseInboundProxy +
+                "|" + P_SipProviderIPNameInboundPr  +
+                "|" + P_SipProviderPortInboundProx  +
+                "|" + P_SipProviderInterfaceType  +
+                "|" + P_SipDeviceId +
+                "|" + P_SipProviderPreconfigured +
+                "|" + P_SipProviderCountryCode  +
+                "|" + P_SipProviderAreaCode  +
+                "|" + P_SipProviderPABXNo  +
+                "|" + P_SipProviderUseStun +
+                "|" + P_SipProviderStunServerIPName  +
+                "|" + P_SipProviderStunServerPort  +
+                "|" + P_SipProvProfileStunMode  +
+                "|" + P_SipIntIntendedForBranding  +
+                "|" + P_SipIntProfileIdentifier  +
+                "|" + P_SipIntProfileIntParamIssue +
+                "|" + P_SipProvProfCLIPFromNameA +
+                "|" + P_SipProvProfCLIPFromAddrS +
+                "|" + P_SipProvProfileFromURIDomain +
+                "|" + P_SipProvProfileRedirNrInFrom +
+                "|" + P_SipProvProfileOrigNrInPAI +
+                "|" + P_SipProvProfCLIPPAssIdA +
+                "|" + P_SipProvProfCLIPPAssIdS +
+                "|" + P_SipProvProfCLIPPPrefNameA +
+                "|" + P_SipProvProfCLIPPPrefAddrS +
+                "|" + P_SipProvProfDivNameA +
+                "|" + P_SipProvProfDivAddrS +
+                "|" + P_SipProvProfHistInfoNameA +
+                "|" + P_SipProvProfHistInfoAddrS +
+                "|" + P_SipProvProfCLIRFromNameA +
+                "|" + P_SipProvProfCLIRFromAddrS +
+                "|" + P_SipProvProfCLIRPrivacy +
+                "|" + P_SipProvProfileUserEqPhone +
+                "|" + P_SipProvProfileCOLPsupported +
+                "|" + P_SipProvProfCalledPartyN  +
+                "|" + P_SipProvProfCallingPartyN  +
+                "|" + P_SipProvProfCallingParNTON  +
+                "|" + P_SipProvProfileMapProvNumber +
+                "|" + P_SipProvProfileMappingMode  +
+                "|" + P_SipProvProfOutCallingParNTON  +
+                "|" + P_SipProvProfInCalledParNTON +
+                "|" + P_SipProvProfClipNoScreenSupp  +
+                "|" + P_SipProvProfUseDialNumFormat  +
+                "|" + P_SipProvProfOutCalledParNTON  +
+                "|" + P_SipProviderE164NP  +
+                "|" + P_SipProvProfRouteType +
+                "|" + P_SipProvProfOut302Allowed +
+                "|" + P_SipProvProfRouteOptimize +
+                "|" + P_SipProviderMEXSupported  +
+                "|" + P_SipProvProfContactUriCont +
+                "|" + P_SipProvProfMultipleRoute  +
+                "|" + P_SipProvProfileInChkRedir  +
+                "|" + P_SipProvProfileContactTCPPort +
+                "|" + P_SipProvProfRegFailRetryTime  +
+                "|" + P_SipProvProfRegFailRetryMode  +
+                "|" + P_SipProvProfRegAfterCallFail +
+                "|" + P_SipProvProfApprovedPeerSel  +
+                "|" + P_SipProvProfUseRouteURIAuth +
+                "|" + P_SipProvProfActiveHoldMode  +
+                "|" + P_SipProvProfIgnore100Rel +
+                "|" + P_SipProvProfSupport100Rel +
+                "|" + P_SipProvProfileRegContactAddr  +
+                "|" + P_SipProvProfileContactUriWith +
+                "|" + P_SipProvProfileRegBNCinContac  +
+                "|" + P_SipProvProfileDirectPayload +
+                "|" + P_SipProvProfileMRAActiv +
+                "|" + P_SipProvChangeDirectionAttr  +
+                "|" + P_SipProvProfPEarlyMediaHeader  +
+                "|" + P_SipProvProfileUseViaRPort +
+                "|" + P_SipProvProfileUPDATESupporte +
+                "|" + P_SipProvProfileSessionTimer  +
+                "|" + P_SipProvProfileProgressTimer  +
+                "|" + P_SipProvProfileUdpKeepAlive  +
+                "|" + P_SipProvProfOptKeepAliveTimer  +
+                "|" + P_SipProvProfileOptionFailover  +
+                "|" + P_SipProvProfAnswer2Options  +
+                "|" + P_SipProvProfRespCodeIndex  +
+                "|" + P_SipProvProfiSilenceSupSup  +
+                "|" + P_SipProvProfileMediaSecSup +
+                "|" + P_SipProvProfileSDPFilterIndex  +
+                "|" + P_SipProvProfSupport100RelUAS  +
+                "|" + P_SipProvProfSwitchBack2Prim;
     }
 
     @Override

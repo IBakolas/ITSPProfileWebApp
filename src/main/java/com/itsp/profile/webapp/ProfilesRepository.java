@@ -6,6 +6,10 @@ import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,8 +18,19 @@ public class ProfilesRepository {
 
     private ResourceLoader resourceLoader;
 
-    public Boolean addProfile()
+    public Boolean updateProfileRepo(ITSPProfile provider)
     {
+        Path file = Paths.get("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\" + provider.getP_SipProviderName() + ".txt");
+        ArrayList<String> lines = new ArrayList<String>();
+        String line = provider.toPersistancyString();
+        
+        lines.add(line);
+        try {
+            Files.write(file, lines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return true;
     }
 
@@ -24,10 +39,6 @@ public class ProfilesRepository {
         return true;
     }
 
-    public Boolean updateProfile()
-    {
-        return true;
-    }
 
     public ArrayList<String> getProfiles() {
 
