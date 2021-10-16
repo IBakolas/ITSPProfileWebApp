@@ -40,10 +40,11 @@ public class ProfileServerViewController {
     }
 
     @GetMapping(path="/edit-profile")
-    public String edit_profile(Model model) {
-        ArrayList<String> profiles = this.profileserverservice.getAllProfiles();
+    public String edit_profile(@RequestParam(name = "id") String profileId, Model model) {
+        ITSPProfile profile = this.profileserverservice.getProfileData(profileId);
+        //ArrayList<String> profiles = this.profileserverservice.getAllProfiles();
 
-        model.addAttribute("profiles", profiles);
+        model.addAttribute("profile", profile);
 
         return "edit-profile";
     }
