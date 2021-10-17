@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,7 +20,7 @@
     <!-- Layout styles -->
     <link th:rel="stylesheet" th:href="@{/assets/css/demo_1/style.css}">
     <!-- End Layout styles -->
-    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -28,9 +28,9 @@
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
             <a class="navbar-brand brand-logo" href="index.html">
-                <img th:src="@{/assets/images/logo.svg}" alt="logo" /> </a>
+                <img th:src="@{/assets/images/logo.svg}" alt="logo"/> </a>
             <a class="navbar-brand brand-logo-mini" href="index.html">
-                <img th:src="@{/assets/images/logo-mini.svg}" alt="logo" /> </a>
+                <img th:src="@{/assets/images/logo-mini.svg}" alt="logo"/> </a>
         </div>
     </nav>
     <!-- partial -->
@@ -41,7 +41,8 @@
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="profile-image">
-                            <img class="img-xs rounded-circle" th:src="@{/assets/images/faces/face8.jpg}" alt="profile image">
+                            <img class="img-xs rounded-circle" th:src="@{/assets/images/faces/face8.jpg}"
+                                 alt="profile image">
                             <div class="dot-indicator bg-success"></div>
                         </div>
                         <div class="text-wrapper">
@@ -58,7 +59,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                       aria-controls="ui-basic">
                         <i class="menu-icon typcn typcn-coffee"></i>
                         <span class="menu-title">Basic UI Elements</span>
                         <i class="menu-arrow"></i>
@@ -143,28 +145,67 @@
 
                 </div>
                 <!-- Page Title Header Ends-->
+                <form action="#" th:action="@{/update-profiles-repo}" th:object="${profile}" method="post"
+                      class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title" th:text="${profile.P_SipProviderName}">Horizontal Two column</h4>
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title" th:text="${profile.P_SipProviderName}">Horizontal Two column</h4>
-                            <form action="#" th:action="@{/update-profiles-repo}" th:object="${profile}" method="post" class="form-sample">
+                                <!--                                        Hidden values-->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Provider Id</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" th:value="${profile.P_SipProviderId}"
+                                               th:field="*{P_SipProviderId}" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Provider Base Id</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" th:value="${profile.P_SipProviderBaseId}"
+                                               th:field="*{P_SipProviderBaseId}" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Provider Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" th:value="${profile.P_SipProviderName}"
+                                               th:field="*{P_SipProviderName}" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Provider Switchback Timer to Secondary Server
+                                        (sec)</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" th:value="${profile.P_SipProvProfSwitchBack2Prim}"
+                                               th:field="*{P_SipProvProfSwitchBack2Prim}" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" th:value="${profile.P_SipProviderActive}"
+                                       th:field="*{P_SipProviderActive}"/>
+
                                 <p class="card-description"> Configuration Data </p>
                                 <div class="row">
                                     <div class="col-md-6">
+
                                         <!--                                        Domain Name-->
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Domain Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" th:value="${profile.P_SipGwDomainName}" class="form-control" readonly/>
+                                                <input type="text" th:value="${profile.P_SipGwDomainName}"
+                                                       th:field="*{P_SipGwDomainName}" class="form-control"/>
                                             </div>
                                         </div>
                                         <!--                                        Transport Protocol-->
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Transport Protocol</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option th:value="${profile.P_SipProviderTransportProtocol}" th:text="${profile.P_SipProviderTransportProtocol}">udp</option>
+                                                <select class="form-control"
+                                                        th:field="*{P_SipProviderTransportProtocol}">
+                                                    <option th:value="udp" th:text="udp">udp</option>
+                                                    <option th:value="tcp" th:text="tcp">tcp</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -173,9 +214,12 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Transport Security</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" th:switch="${profile.P_SipProviderSecurity}">
-                                                    <option th:case="'0'" >traditional (udp or tcp)</option>
-                                                    <option th:case="'1'">secure (tls)</option>
+                                                <select class="form-control" th:field="*{P_SipProviderSecurity}">
+                                                    <option th:value="'0'" th:text="'traditional (udp or tcp)'">
+                                                        traditional (udp or tcp)
+                                                    </option>
+                                                    <option th:value="'1'" th:text="'secure (tls)'">secure (tls)
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -184,31 +228,34 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Media Security</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" th:switch="${profile.P_SipProviderMediaSecurity}">
-                                                    <option th:case="'0'" >RTP only</option>
-                                                    <option th:case="'1'">SDES only</option>
+                                                <select class="form-control" th:field="*{P_SipProviderMediaSecurity}">
+                                                    <option th:value="'0'" th:text="'RTP only'">RTP only</option>
+                                                    <option th:value="'1'" th:text="'SDES only'">SDES only</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                            </form>
+
+                                <!--                                </form>-->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Provider Registrar</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Provider Registrar</h4>
                                 <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseRegistrar}">
+                                        <label class="form-check-label" th:field="*{P_SipProviderUseRegistrar}"
+                                               th:switch="${profile.P_SipProviderUseRegistrar}">
                                             Use Registrar
-                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
-                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
                                         </label>
                                     </div>
                                 </div>
@@ -217,7 +264,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">IP address / Hostname</label>
                                             <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderRegistrarIPName}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderRegistrarIPName}"
+                                                       th:field="*{P_SipProviderRegistrarIPName}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -228,7 +277,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Port</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderRegistrarPort}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderRegistrarPort}"
+                                                       th:field="*{P_SipProviderRegistrarPort}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -236,30 +287,33 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Registration Interval at Provider (sec)</label>
+                                            <label class="col-sm-3 col-form-label">Registration Interval at Provider
+                                                (sec)</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderReregistrationInt}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderReregistrationInt}"
+                                                       th:field="*{P_SipProviderReregistrationInt}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Provider Proxy</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Provider Proxy</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">IP address / Hostname</label>
                                             <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderIPNameProxy}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderIPNameProxy}"
+                                                       th:field="*{P_SipProviderIPNameProxy}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -270,26 +324,30 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Port</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderPortProxy}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderPortProxy}"
+                                                       th:field="*{P_SipProviderPortProxy}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Provider Outbound Proxy</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Provider Outbound Proxy</h4>
+                                <!--                                <form class="form-sample">-->
                                 <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseOutboundProxy}">
+                                        <label class="form-check-label" th:field="*{P_SipProviderUseOutboundProxy}"
+                                               th:switch="${profile.P_SipProviderUseOutboundProxy}">
                                             Use Outbound Proxy
-                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
-                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
                                         </label>
                                     </div>
                                 </div>
@@ -298,7 +356,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">IP address / Hostname</label>
                                             <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderIPNameOutboundPr}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderIPNameOutboundPr}"
+                                                       th:field="*{P_SipProviderIPNameOutboundPr}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -309,27 +369,32 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Port</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderPortOutboundProx}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderPortOutboundProx}"
+                                                       th:field="*{P_SipProviderPortOutboundProx}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                                <!--                                </form>-->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Provider Inbound Proxy</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Provider Inbound Proxy</h4>
+                                <!--                                <form class="form-sample">-->
                                 <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseInboundProxy}">
+                                        <label class="form-check-label" th:field="*{P_SipProviderUseInboundProxy}"
+                                               th:switch="${profile.P_SipProviderUseInboundProxy}">
                                             Use Inbound Proxy
-                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
-                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
                                         </label>
                                     </div>
                                 </div>
@@ -338,7 +403,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">IP address / Hostname</label>
                                             <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderIPNameInboundPr}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderIPNameInboundPr}"
+                                                       th:field="*{P_SipProviderIPNameInboundPr}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -349,27 +416,32 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Port</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderPortInboundProx}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderPortInboundProx}"
+                                                       th:field="*{P_SipProviderPortInboundProx}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                                <!--                                </form>-->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Provider STUN</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Provider STUN</h4>
+                                <!--                                <form class="form-sample">-->
                                 <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProviderUseStun}">
+                                        <label class="form-check-label" th:field="*{P_SipProviderUseStun}"
+                                               th:switch="${profile.P_SipProviderUseStun}">
                                             Use STUN
-                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
-                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                            <input type="checkbox" class="form-check-input" th:case="'false'"
+                                                   th:value="'false'">
+                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked
+                                                   th:value="'true'">
                                         </label>
                                     </div>
                                 </div>
@@ -378,7 +450,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">IP address / Hostname</label>
                                             <div class="col-sm-9">
-                                                <input type="text"  class="form-control" th:value="${profile.P_SipProviderStunServerIPName}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderStunServerIPName}"
+                                                       th:field="*{P_SipProviderStunServerIPName}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -389,110 +463,101 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Port</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" th:value="${profile.P_SipProviderStunServerPort}" readonly/>
+                                                <input type="text" class="form-control"
+                                                       th:value="${profile.P_SipProviderStunServerPort}"
+                                                       th:field="*{P_SipProviderStunServerPort}"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">CLIP/CLIR</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">CLIP/CLIR</h4>
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - display part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in From header - display
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPFromNameA}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
-                                                <option th:case="'3'">display name</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIPFromNameA}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
+                                                <option th:value="'3'" th:text="'display name'">display name</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - user part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - user
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPFromAddrS}">
-                                                <option th:case="'0'">call number</option>
-                                                <option th:case="'1'">account</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIPFromAddrS}">
+                                                <option th:value="'0'" th:text="'call number'">call number</option>
+                                                <option th:value="'1'" th:text="'account'">account</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - domain/host part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP ougoing in From header - domain/host
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfileFromURIDomain}">
-                                                <option th:case="'0'">LocalIPAddr</option>
-                                                <option th:case="'1'">DomainName</option>
-                                                <option th:case="'2'">PublicIPAddr</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfileFromURIDomain}">
+                                                <option th:value="'0'" th:text="'LocalIPAddr'">LocalIPAddr</option>
+                                                <option th:value="'1'" th:text="'DomainName'">DomainName</option>
+                                                <option th:value="'2'" th:text="'PublicIPAddr'">PublicIPAddr</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProvProfileRedirNrInFrom}">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfileRedirNrInFrom}">
                                             Diversion: From contains original CallingPartyNumber
-                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
-                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                            <input type="checkbox" class="form-check-input" th:value="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'">
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-check form-check-flat">
-                                        <label class="form-check-label" th:switch="${profile.P_SipProvProfileOrigNrInPAI}">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfileOrigNrInPAI}">
                                             Diversion: PAI contains original CallingPartyNumber
-                                            <input type="checkbox" class="form-check-input" th:case="'false'" disabled>
-                                            <input type="checkbox" class="form-check-input" th:case="'true'" checked disabled>
+                                            <input type="checkbox" class="form-check-input" th:value="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'">
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Asserted-Id header display part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Asserted-Id header
+                                            display part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPAssIdA}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
-                                                <option th:case="'3'">display name</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIPPAssIdA}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
+                                                <option th:value="'3'" th:text="'display name'">display name</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Asserted-Id header user part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Asserted-Id header
+                                            user part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPAssIdS}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Preferred-Id header display part</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPPrefNameA}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
-                                                <option th:case="'3'">display name</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIPPAssIdS}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
                                             </select>
                                         </div>
                                     </div>
@@ -500,12 +565,14 @@
 
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Preferred-Id header user part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Preferred-Id header
+                                            display part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIPPPrefAddrS}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIPPPrefNameA}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
+                                                <option th:value="'3'" th:text="'display name'">display name</option>
                                             </select>
                                         </div>
                                     </div>
@@ -513,13 +580,13 @@
 
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in Diversion header display part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in P-Preferred-Id header
+                                            user part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfDivNameA}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
-                                                <option th:case="'3'">display name</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIPPPrefAddrS}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
                                             </select>
                                         </div>
                                     </div>
@@ -527,12 +594,14 @@
 
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in Diversion header user part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in Diversion header display
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfDivAddrS}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfDivNameA}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
+                                                <option th:value="'3'" th:text="'display name'">display name</option>
                                             </select>
                                         </div>
                                     </div>
@@ -540,11 +609,13 @@
 
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIP outgoing in History-Info header user part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in Diversion header user
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfHistInfoNameA}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfDivAddrS}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
                                             </select>
                                         </div>
                                     </div>
@@ -552,26 +623,43 @@
 
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIR outgoing in From header display part</label>
+                                        <label class="col-sm-3 col-form-label">CLIP outgoing in History-Info header user
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIRFromNameA}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">call number</option>
-                                                <option th:case="'2'">account</option>
-                                                <option th:case="'3'">anonymous</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfHistInfoNameA}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIR outgoing in From header display
+                                            part</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIRFromNameA}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'call number'">call number</option>
+                                                <option th:value="'2'" th:text="'account'">account</option>
+                                                <option th:value="'3'" th:text="'anonymous'">anonymous</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">CLIR outgoing in From header user part</label>
+                                        <label class="col-sm-3 col-form-label">CLIR outgoing in From header user
+                                            part</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIRFromAddrS}">
-                                                <option th:case="'0'">call number</option>
-                                                <option th:case="'1'">account</option>
-                                                <option th:case="'2'">fully anonymous</option>
-                                                <option th:case="'3'">user anonymous</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIRFromAddrS}">
+                                                <option th:value="'0'" th:text="'call number'">call number</option>
+                                                <option th:value="'1'" th:text="'account'">account</option>
+                                                <option th:value="'2'" th:text="'fully anonymous'">fully anonymous
+                                                </option>
+                                                <option th:value="'3'" th:text="'user anonymous'">user anonymous
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -581,11 +669,11 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">CLIR outgoing Privacy header</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfCLIRPrivacy}">
-                                                <option th:case="'0'">omit</option>
-                                                <option th:case="'1'">id</option>
-                                                <option th:case="'2'">user</option>
-                                                <option th:case="'3'">user;ld</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfCLIRPrivacy}">
+                                                <option th:value="'0'" th:text="'omit'">omit</option>
+                                                <option th:value="'1'" th:text="'id'">id</option>
+                                                <option th:value="'2'" th:text="'user'">user</option>
+                                                <option th:value="'3'" th:text="'user;ld'">user;ld</option>
                                             </select>
                                         </div>
                                     </div>
@@ -593,33 +681,351 @@
 
                                 <div class="row">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">COLP/TIP supported for outgoing calls</label>
+                                        <label class="col-sm-3 col-form-label">COLP/TIP supported for outgoing
+                                            calls</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfileCOLPsupported}">
-                                                <option th:case="'0'">COLP not supported</option>
-                                                <option th:case="'1'">COLP supported</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfileCOLPsupported}">
+                                                <option th:value="'0'" th:text="'COLP not supported'">COLP not
+                                                    supported
+                                                </option>
+                                                <option th:value="'1'" th:text="'COLP supported'">COLP supported
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Call number formatting</h4>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Incomming call- Called party
+                                            number:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfCalledPartyN}">
+                                                <option th:value="'0'" th:text="'request line'">request line</option>
+                                                <option th:value="'1'" th:text="'To header display'">To header display
+                                                </option>
+                                                <option th:value="'2'" th:text="'To header user part'">To header user
+                                                    part
+                                                </option>
+                                                <option th:value="'3'" th:text="'P-Called-Part-Id header display part'">
+                                                    P-Called-Part-Id header display part
+                                                </option>
+                                                <option th:value="'4'" th:text="'P-Called-Part-Id header user part'">
+                                                    P-Called-Part-Id header user part
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Incoming call - Calling party
+                                            number:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfCallingPartyN}">
+                                                <option th:value="'0'" th:text="'automatic'">automatic</option>
+                                                <option th:value="'1'" th:text="'From header display part'">From header
+                                                    display part
+                                                </option>
+                                                <option th:value="'2'" th:text="'From header user part'">From header
+                                                    user part
+                                                </option>
+                                                <option th:value="'3'" th:text="'P-Asserted-Id header display part'">
+                                                    P-Asserted-Id header display part
+                                                </option>
+                                                <option th:value="'4'" th:text="'From header user part'">From header
+                                                    user part
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Incoming call - Type of number
+                                            (calling):</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfInCalledParNTON}">
+                                                <option th:value="'0'" th:text="'automatic'">automatic</option>
+                                                <option th:value="'1'" th:text="'international'">international</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Incoming call - Type of number
+                                            (called):</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileMapProvNumber}">
+                                                <option th:value="'0'" th:text="'automatic'">automatic</option>
+                                                <option th:value="'1'" th:text="'international'">international</option>
+                                                <option th:value="'2'" th:text="'national'">national</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Outgoing call - Type of number
+                                            (calling):</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfOutCallingParNTON}">
+                                                <option th:value="'0'" th:text="'automatic'">automatic</option>
+                                                <option th:value="'1'" th:text="'international'">international</option>
+                                                <option th:value="'2'" th:text="'national'">national</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Outgoing call - Type of number
+                                            (called):</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfInCalledParNTON}">
+                                                <option th:value="'0'" th:text="'automatic'">automatic</option>
+                                                <option th:value="'1'" th:text="'international'">international</option>
+                                                <option th:value="'2'" th:text="'national'">national</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Mapping of provider number:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileMappingMode}">
+                                                <option th:value="'0'" th:text="'in any value'">in any value</option>
+                                                <option th:value="'1'" th:text="'Incoming called only (if configured)'">
+                                                    Incoming called only (if configured)
+                                                </option>
+                                                <option th:value="'2'" th:text="'off'">off</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">CLIP no Screening support:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfClipNoScreenSupp}">
+                                                <option th:value="'0'" th:text="'not supported'">not supported</option>
+                                                <option th:value="'1'" th:text="'CLIP in From / trusted number in PAI'">
+                                                    CLIP in From / trusted number in PAI
+                                                </option>
+                                                <option th:value="'2'" th:text="'Supported-No special treatment'">
+                                                    Supported-No special treatment
+                                                </option>
+                                                <option th:value="'3'" th:text="'CLIP in From / DID number in PAI'">CLIP
+                                                    in From / DID number in PAI
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
-                            </form>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Call No. with international/national
+                                            prefix:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfUseDialNumFormat}">
+                                                <option th:value="'0'" th:text="'no'">no</option>
+                                                <option th:value="'1'" th:text="'yes'">yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Called number in E164 format:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" th:field="*{P_SipProviderE164NP}">
+                                                <option th:value="'0'" th:text="'no'">no</option>
+                                                <option th:value="'1'" th:text="'yes'">yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Route optimization:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfOut302Allowed}">
+                                                <option th:value="'0'" th:text="'not allowed'">not allowed</option>
+                                                <option th:value="'1'" th:text="'allowed'">allowed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">MEX supported:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProviderMEXSupported}">
+                                                <option th:value="'0'" th:text="'no'">no</option>
+                                                <option th:value="'1'" th:text="'yes'">yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Contact URI contains:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:switch="${profile.P_SipProvProfContactUriCont}">
+                                                <option th:value="'0'" th:text="'call number:'">call number:</option>
+                                                <option th:value="'1'" th:text="'RegistrationAOR'">RegistrationAOR
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">TCP port used in Contact URI: </label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:switch="${profile.P_SipProvProfileContactTCPPort}">
+                                                <option th:value="'0'" th:text="'ephem. src-port'">ephem. src-port
+                                                </option>
+                                                <option th:value="'1'" th:text="'SIP server port'">SIP server port
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Security</h4>
-                            <form class="form-sample">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Registration</h4>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Register Contact contains
+                                            IP-Address:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileRegContactAddr}">
+                                                <option th:value="'0'" th:text="'localIPAddr'">localIPAddr</option>
+                                                <option th:value="'1'" th:text="'domainName'">domainName</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label"
+                                               th:switch="${profile.p_SipProvProfileContactUriWith}"
+                                               th:field="*{p_SipProvProfileContactUriWith}">
+                                            ContactUriWithProtocol
+                                            <input type="checkbox" class="form-check-input" th:case="'0'"
+                                                   th:value="'false'">
+                                            <input type="checkbox" class="form-check-input" th:case="'1'"
+                                                   th:value="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">BNC Registration (SIPconnect):</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileRegBNCinContac}">
+                                                <option th:value="'0'" th:text="'normal registration'">normal
+                                                    registration
+                                                </option>
+                                                <option th:value="'1'" th:text="'BNC registration'">BNC registration
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">ReRegistration interval after failure
+                                            (sec):</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" th:value="${profile.P_SipProvProfRegFailRetryTime}"
+                                                   th:field="*{P_SipProvProfRegFailRetryTime}"
+                                                   class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">ReRegistration mode:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileCOLPsupported}">
+                                                <option th:value="'0'" th:text="'continuous'">continuous</option>
+                                                <option th:value="'1'" th:text="'SIPconnect'">SIPconnect</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">ReRegistration after call failure</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfRegAfterCallFail}">
+                                                <option th:value="'0'" th:text="'CallFailureIsNoRegFailure'">
+                                                    CallFailureIsNoRegFailure
+                                                </option>
+                                                <option th:value="'1'" th:text="'CallFailureIsRegFailure'">
+                                                    CallFailureIsRegFailure
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Security</h4>
                                 <div class="row">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">UDP mode</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProviderUdpMode}">
-                                                <option th:case="'0'">Symmetric UDP</option>
-                                                <option th:case="'1'">Asymmetric UDP</option>
+                                            <select class="form-control" th:field="*{P_SipProviderUdpMode}">
+                                                <option th:value="'0'" th:text="'Symmetric UDP'">Symmetric UDP</option>
+                                                <option th:value="'1'" th:text="'Asymmetric UDP'">Asymmetric UDP
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -628,34 +1034,312 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Approved Peer Selection</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:switch="${profile.P_SipProvProfApprovedPeerSel}">
-                                                <option th:case="'0'">Trust configured servers only</option>
-                                                <option th:case="'1'">Trust servers received in SIP responses</option>
+                                            <select class="form-control" th:field="*{P_SipProvProfApprovedPeerSel}">
+                                                <option th:value="'0'" th:text="'Trust configured servers only'">Trust
+                                                    configured servers only
+                                                </option>
+                                                <option th:value="'1'"
+                                                        th:text="'Trust servers received in SIP responses'">Trust
+                                                    servers received in SIP responses
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Miscellaneous</h4>
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfileDirectPayload}"
+                                               th:switch="${profile.P_SipProvProfileDirectPayload}">
+                                            Direct Payload:
+                                            <input type="checkbox" class="form-check-input" th:case="'0'"
+                                                   th:value="'false'">
+                                            <input type="checkbox" class="form-check-input" th:case="'1'"
+                                                   th:value="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfileMRAActiv}"
+                                               th:switch="${profile.P_SipProvProfileMRAActiv}">
+                                            Media Renegotiation Avoidance:
+                                            <input type="checkbox" class="form-check-input" th:case="'0'"
+                                                   th:value="'false'">
+                                            <input type="checkbox" class="form-check-input" th:case="'1'"
+                                                   th:value="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Change direction attribute:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvChangeDirectionAttr}">
+                                                <option th:value="'0'" th:text="'keep attribute'">keep attribute
+                                                </option>
+                                                <option th:value="'1'" th:text="'change to sendrecv'">change to
+                                                    sendrecv
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Silence Suppression attribute:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfiSilenceSupSup}">
+                                                <option th:value="'0'" th:text="'not supported'">not supported</option>
+                                                <option th:value="'1'" th:text="'supported'">supported</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> Mediasec extension:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileMediaSecSup}">
+                                                <option th:value="'0'" th:text="'not supported'">not supported</option>
+                                                <option th:value="'1'" th:text="'supported'">supported</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> SDP Filter:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileSDPFilterIndex}">
+                                                <option th:value="'0'" th:text="'Default'">Default</option>
+                                                <option th:value="'1'" th:text="'Compatibility profile'">Compatibility
+                                                    profile
+                                                </option>
+                                                <option th:value="'1'" th:text="'Open'">Open</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> Check Redirection:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileInChkRedir}">
+                                                <option th:value="'0'" th:text="'Not supported'">Not supported</option>
+                                                <option th:value="'1'" th:text="'History-Info + Referred-By'">
+                                                    History-Info + Referred-By
+                                                </option>
+                                                <option th:value="'1'" th:text="'History-Info'">History-Info</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfUseRouteURIAuth}"
+                                               th:switch="${profile.P_SipProvProfUseRouteURIAuth}">
+                                            UseRouteURIAuthentication:
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfIgnore100Rel}"
+                                               th:switch="${profile.P_SipProvProfIgnore100Rel}">
+                                            Ignore 100 Rel:
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfSupport100Rel}"
+                                               th:switch="${profile.P_SipProvProfSupport100Rel}">
+                                            Support 100rel
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfileUseViaRPort}"
+                                               th:switch="${profile.P_SipProvProfileUseViaRPort}">
+                                            UseViaRPort:
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label" th:field="*{P_SipProvProfileUPDATESupporte}"
+                                               th:switch="${profile.P_SipProvProfileUPDATESupporte}">
+                                            UPDATE Supported:
+                                            <input type="checkbox" class="form-check-input" th:value="'false'"
+                                                   th:case="'false'">
+                                            <input type="checkbox" class="form-check-input" th:value="'true'"
+                                                   th:case="'true'" checked>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> P-Early-Media header support:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfPEarlyMediaHeader}">
+                                                <option th:value="'0'" th:text="'Not supported'">Not supported</option>
+                                                <option th:value="'1'" th:text="'supported'">supported</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
 
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> Session Timer support:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileSessionTimer}">
+                                                <option th:value="'0'" th:text="'not active'">not active</option>
+                                                <option th:value="'1'" th:text="'refresher Policy Remote'">refresher
+                                                    Policy Remote
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            </form>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Send automatic 183 response timer
+                                            (sec):</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{P_SipProvProfileProgressTimer}"
+                                                   th:value="${profile.P_SipProvProfileProgressTimer}"
+                                                   class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> UDP-Keep Alive:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="*{P_SipProvProfileUdpKeepAlive}">
+                                                <option th:value="'0'" th:text="'UdpKeepAliveOFF'">UdpKeepAliveOFF
+                                                </option>
+                                                <option th:value="'1'" th:text="'UdpKeepAliveON'">UdpKeepAliveON
+                                                </option>
+                                                <option th:value="'2'" th:text="'SendAliveOptions'">SendAliveOptions
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Keep Alive interval for OPTIONS
+                                            (sec):</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{P_SipProvProfOptKeepAliveTimer}"
+                                                   th:value="${profile.P_SipProvProfOptKeepAliveTimer}"
+                                                   class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Reregistration on OPTIONS
+                                            Failure:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="${profile.P_SipProvProfileOptionFailover}">
+                                                <option th:value="'0'" th:text="'NoRegisterOnFailure'">
+                                                    NoRegisterOnFailure
+                                                </option>
+                                                <option th:value="'1'" th:text="'RegisterOnFailure'">RegisterOnFailure
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Answer to OPTIONS:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                    th:field="${profile.P_SipProvProfAnswer2Options}">
+                                                <option th:value="'0'" th:text="'Full Answer'">Full Answer</option>
+                                                <option th:value="'1'" th:text="'Without Body'">Without Body</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div>
+                        <button type="submit" class="btn btn-success mr-2">Submit</button>
+                    </div>
+                </form>
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-            <footer class="footer">
-                <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-                </div>
-            </footer>
-            <!-- partial -->
         </div>
-        <!-- main-panel ends -->
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="container-fluid clearfix">
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a
+                        href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+            </div>
+        </footer>
+        <!-- partial -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
 <!-- plugins:js -->

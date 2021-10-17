@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,24 +40,28 @@ public class ProfileServerViewController {
         return "view-profile";
     }
 
+
     @GetMapping(path="/edit-profile")
     public String edit_profile(@RequestParam(name = "id") String profileId, Model model) {
-        ITSPProfile profile = this.profileserverservice.getProfileData(profileId);
-        //ArrayList<String> profiles = this.profileserverservice.getAllProfiles();
+        ITSPProfile profile = new ITSPProfile();
+
+        if(!profileId.contentEquals("0"))
+        {
+            profile = this.profileserverservice.getProfileData(profileId);
+        }
 
         model.addAttribute("profile", profile);
 
         return "edit-profile";
     }
 
-    @GetMapping(path="/update-profiles-repo")
+    @PostMapping(path="/update-profiles-repo")
     public String update_profiles_repo(@ModelAttribute ITSPProfile profile, Model model) {
 
-        // Maybe this is not needed
-        // model.addAttribute("profile", profile);
+        System.out.println("Data from form: " + profile);
         if(this.profileserverservice.updateRepo(profile))
         {
-            return "Success";
+            return "index";
         }
         else
         {
