@@ -69,5 +69,58 @@ public class ProfileServerViewController {
         }
 
     }
+
+    @GetMapping(path="/parameters")
+    public String parameters(Model model) {
+        ArrayList<String> parameters = this.profileserverservice.getAllConfigurationParameters();
+
+        model.addAttribute("parameters", parameters);
+
+        return "parameters";
+    }
+
+    @GetMapping(path="/view-parameter")
+    public String view_parameter(@RequestParam(name = "id") String parameterId, Model model) {
+        ConfigurationParam parameter = new ConfigurationParam();
+
+        if(!parameterId.contentEquals("0"))
+        {
+            parameter = this.profileserverservice.getConfigurationParamData(parameterId);
+        }
+
+        System.out.println("View parameter: " + parameter);
+        model.addAttribute("parameter", parameter);
+
+        return "view-parameter";
+    }
+
+    @GetMapping(path="/edit-parameter")
+    public String edit_parameter(@RequestParam(name = "id") String parameterId, Model model) {
+        ConfigurationParam parameter = new ConfigurationParam();
+
+        if(!parameterId.contentEquals("0"))
+        {
+            parameter = this.profileserverservice.getConfigurationParamData(parameterId);
+            System.out.println("Found parameter: " + parameter);
+        }
+
+        model.addAttribute("parameter", parameter);
+
+        return "edit-parameter";
+    }
+
+    @PostMapping(path="/update-parameters-repo")
+    public String update_parameters_repo(@ModelAttribute ConfigurationParam parameter, Model model) {
+
+        System.out.println("Data from form: " + parameter);
+        if(this.profileserverservice.updateConfigurationParamRepo(parameter))
+        {
+            return "parameters";
+        }
+        else
+        {
+            return "Error";
+        }
+    }
 }
 

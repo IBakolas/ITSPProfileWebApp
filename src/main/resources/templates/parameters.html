@@ -92,7 +92,7 @@
                 <div class="row page-title-header">
                     <div class="col-12">
                         <div class="page-header">
-                            <h4 class="page-title">ITSP Profiles</h4>
+                            <h4 class="page-title">Configuration Parameters</h4>
 
                         </div>
                     </div>
@@ -101,8 +101,8 @@
                 <!-- Page Title Header Ends-->
 
                 <button type="button" class="btn btn-secondary btn-fw" >
-                    <a th:href="@{/edit-profile?id=0}">
-                        <i class="mdi mdi-file-document"></i>Add Profile +
+                    <a th:href="@{/edit-parameter?id=0}">
+                        <i class="mdi mdi-file-document"></i>Add Parameter +
                     </a>
                 </button>
 
@@ -113,40 +113,39 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
-                                            <h4 class="card-title mb-0">Profiles</h4>
+                                            <h4 class="card-title mb-0">Configuration Parameters</h4>
                                             <a href="#"><small>Show All</small></a>
                                         </div>
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover">
                                                 <thead>
                                                 <tr>
-                                                    <th>ITSP</th>
+                                                    <th>Parameter</th>
                                                     <th>Last Modified</th>
                                                     <th>Downloads</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr th:each="profile : ${profiles}">
+                                                <tr th:each="parameter : ${parameters}">
 
-                                                    <td th:text="${profile}"></td>
+                                                    <td th:text="${parameter}"></td>
                                                     <td>05/10/2021</td>
                                                     <td>300</td>
                                                     <td>
                                                         <button type="button" class="btn btn-secondary btn-fw" >
-                                                            <a th:href="@{/view-profile/(id=${profile})}">
+                                                            <a th:href="@{/view-parameter/(id=${parameter})}">
                                                                 <i class="mdi mdi-file-document"></i>View
                                                             </a>
                                                         </button>
                                                     </td>
                                                     <td>
                                                         <button type="button" class="btn btn-dark btn-fw">
-                                                            <a th:href="@{/edit-profile/(id=${profile})}">
+                                                            <a th:href="@{/edit-parameter/(id=${parameter})}">
                                                                 <i class="mdi mdi-cloud-download"></i>Edit
                                                             </a>
                                                         </button>
                                                     </td>
                                                 </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>

@@ -12,6 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class ProfilesRepository {
@@ -104,6 +107,122 @@ public class ProfilesRepository {
 
     public Boolean findProfileById()
     {
+        return true;
+    }
+
+    public ArrayList<String> getConfigurationParameters() throws IOException {
+        ArrayList<String> params = new ArrayList<String>();
+        FileInputStream fstream = null;
+
+        String path = "C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters";
+        System.out.println(path);
+
+        fstream = new FileInputStream(path);
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String strLine;
+
+        //Read File Line By Line
+        while ((strLine = br.readLine()) != null) {
+            // Print the content on the console - do what you want to do
+            System.out.println("Read parameters line: " + strLine);
+            if(!strLine.contentEquals(""))
+            {
+                String[] splitted = strLine.split(" ");
+
+                splitted = splitted[0].split("\\|");
+
+                System.out.println("Splitted: " + Arrays.toString(splitted));
+                params.add(splitted[0]);
+            }
+
+        }
+
+        //Close the input stream
+        fstream.close();
+
+        return params;
+    }
+
+    public ConfigurationParam findConfigurationParamByName(String parameter) throws IOException {
+        ConfigurationParam param = null;
+        FileInputStream fstream;
+        String path = "C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters";
+
+        fstream = new FileInputStream(path);
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String strLine;
+
+        //Read File Line By Line
+        while ((strLine = br.readLine()) != null) {
+            // Print the content on the console - do what you want to do
+            System.out.println("Read parameters line: " + strLine);
+            if(!strLine.contentEquals(""))
+            {
+                String[] splitted = strLine.split(" ");
+                splitted = splitted[0].split("\\|");
+
+                System.out.println("Splitted: " + Arrays.toString(splitted));
+                if(splitted[0].contentEquals(parameter))
+                {
+                    param = new ConfigurationParam();
+                    param.parseFromString(strLine.replace(" ", ""));
+                }
+            }
+
+        }
+
+        //Close the input stream
+        fstream.close();
+
+        return param;
+    }
+
+    public boolean updateConfigurationParamRepo(ConfigurationParam param) {
+        //Path file = Paths.get("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters");
+        String param_line = param.toPersistancyString();
+        System.out.println("Param persistency string: " + param_line);
+
+        try {
+            // input the (modified) file content to the StringBuffer "input"
+            BufferedReader file = new BufferedReader(new FileReader("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters"));
+            StringBuffer inputBuffer = new StringBuffer();
+            String line;
+
+            boolean paramexists = false;
+            while ((line = file.readLine()) != null)
+            {
+                if (line.contains(param.getParamName()))
+                {
+                    line = param_line;
+                    paramexists = true;
+                }
+
+                inputBuffer.append(line);
+                inputBuffer.append("\r\n");
+            }
+
+            // if the param does not exist in the file add it in a new line
+            if(!paramexists)
+            {
+                inputBuffer.append(param_line);
+                inputBuffer.append("\r\n");
+            }
+
+            file.close();
+
+            // write the new string with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+
         return true;
     }
 }

@@ -92,71 +92,52 @@
                 <div class="row page-title-header">
                     <div class="col-12">
                         <div class="page-header">
-                            <h4 class="page-title">ITSP Profiles</h4>
-
+                            <h4 class="page-title">Configuration Parameters</h4>
                         </div>
                     </div>
 
                 </div>
                 <!-- Page Title Header Ends-->
-
-                <button type="button" class="btn btn-secondary btn-fw" >
-                    <a th:href="@{/edit-profile?id=0}">
-                        <i class="mdi mdi-file-document"></i>Add Profile +
-                    </a>
-                </button>
-
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-12 grid-margin">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h4 class="card-title mb-0">Profiles</h4>
-                                            <a href="#"><small>Show All</small></a>
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="${parameter.paramName}">Horizontal Two column</h4>
+                            <form th:action="@{/update-parameters-repo}" th:object="${parameter}" method="post" class="form-sample">
+                                <p class="card-description"> Configuration Parameter Data </p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Parameter Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" th:value="${parameter.paramName}" th:field="*{paramName}" class="form-control"/>
+                                            </div>
                                         </div>
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th>ITSP</th>
-                                                    <th>Last Modified</th>
-                                                    <th>Downloads</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="profile : ${profiles}">
-
-                                                    <td th:text="${profile}"></td>
-                                                    <td>05/10/2021</td>
-                                                    <td>300</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-secondary btn-fw" >
-                                                            <a th:href="@{/view-profile/(id=${profile})}">
-                                                                <i class="mdi mdi-file-document"></i>View
-                                                            </a>
-                                                        </button>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-dark btn-fw">
-                                                            <a th:href="@{/edit-profile/(id=${profile})}">
-                                                                <i class="mdi mdi-cloud-download"></i>Edit
-                                                            </a>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                                </tbody>
-                                            </table>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Parameter Id</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" th:value="${parameter.paramId}" th:field="*{paramId}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Parameter Type Id</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" th:value="${parameter.paramTypeId}" th:field="*{paramTypeId}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Default Value</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" th:value="${parameter.defaultValue}" th:field="*{defaultValue}" class="form-control"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                                <div>
+                                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
                 </div>
 
             </div>

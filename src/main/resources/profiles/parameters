@@ -1,0 +1,105 @@
+P_SipProviderId               |0x017D0001|0x00000007|1|1
+P_SipProviderBaseId           |0x017D0028|0x0000000b|0|0
+P_SipProviderActive           |0x017D000a|0x00000003|false|false
+P_SipProviderName             |0x017D0002|0x00000001||
+P_SipGwDomainName             |0x017D0003|0x00000001||
+P_SipProviderInterfaceSelect  |0x017D0029|0x0000000b|0|0
+P_SipProviderIPVersion        |0x017D002a|0x0000000b|4|4
+P_SipProviderTransportProtocol|0x017D0021|0x00000001|udp|udp
+P_SipProviderUdpMode          |0x017D0024|0x0000000b|0|0
+P_SipProviderSignalProtocol   |0x017D0022|0x0000000b|0|0
+P_SipProviderSecurity         |0x017D0023|0x0000000b|0|0
+P_SipProviderMediaSecurity    |0x017D0025|0x0000000b|0|0
+P_SipProviderSuppSecurity     |0x017D0027|0x0000000B|0|0
+P_SipProviderUseRegistrar     |0x017D0010|0x00000003|true|true
+P_SipProviderRegistrarIPName  |0x017D0004|0x00000001||
+P_SipProviderRegistrarPort    |0x017D0005|0x0000000b|5060|5060
+P_SipProviderReregistrationInt|0x017D0006|0x00000008|600|600
+P_SipProviderUseProxy         |0x017D0007|0x00000003|true|true
+P_SipProviderIPNameProxy      |0x017D0008|0x00000001||
+P_SipProviderPortProxy        |0x017D0009|0x0000000b|5060|5060
+P_SipProviderUseOutboundProxy |0x017D000b|0x00000003|false|false
+P_SipProviderIPNameOutboundPr |0x017D000c|0x00000001|0.0.0.0|0.0.0.0
+P_SipProviderPortOutboundProx |0x017D000d|0x0000000b|0|0
+P_SipProviderUseInboundProxy  |0x017D0019|0x00000003|false|false
+P_SipProviderIPNameInboundPr  |0x017D001a|0x00000001|0.0.0.0|0.0.0.0
+P_SipProviderPortInboundProx  |0x017D001b|0x0000000b|0|0
+P_SipProviderInterfaceType    |0x017D000e|0x00000008|0|0
+P_SipDeviceId                 |0x017D0011|0x00000007|0|0
+P_SipProviderPreconfigured    |0x017D0012|0x00000003|true|true
+P_SipProviderCountryCode      |0x017D0013|0x00000001|*|*
+P_SipProviderAreaCode         |0x017D0014|0x00000001||
+P_SipProviderPABXNo           |0x017D0015|0x00000001||
+P_SipProviderUseStun          |0x017D0020|0x00000003|false|false
+P_SipProviderStunServerIPName |0x017D0016|0x00000001||
+P_SipProviderStunServerPort   |0x017D0017|0x0000000b|3478|3478
+P_SipProvProfileStunMode      |0x017D0026|0x0000000b|0|0
+P_SipIntIntendedForBranding   |0x01900002|0x00000001|*:*|*:*
+P_SipIntProfileIdentifier     |0x01900003|0x00000007|0|0
+P_SipIntProfileIntParamIssue  |0x01900004|0x0000000b|0|0
+P_SipProvProfCLIPFromNameA    |0x01910002|0x0000000b|0|0
+P_SipProvProfCLIPFromAddrS    |0x01910003|0x0000000b|1|1
+P_SipProvProfileFromURIDomain |0x01910019|0x0000000b|1|1
+P_SipProvProfileRedirNrInFrom |0x01910018|0x00000003|false|false
+P_SipProvProfileOrigNrInPAI   |0x0191001e|0x00000003|false|false
+P_SipProvProfCLIPPAssIdA      |0x01910004|0x0000000b|0|0
+P_SipProvProfCLIPPAssIdS      |0x01910005|0x0000000b|1|1
+P_SipProvProfCLIPPPrefNameA   |0x01910006|0x0000000b|0|0
+P_SipProvProfCLIPPPrefAddrS   |0x01910007|0x0000000b|0|0
+P_SipProvProfDivNameA         |0x0191001c|0x0000000b|0|0
+P_SipProvProfDivAddrS         |0x0191001d|0x0000000b|1|1
+P_SipProvProfHistInfoNameA    |0x0191002f|0x0000000b|0|0
+P_SipProvProfHistInfoAddrS    |0x01910030|0x0000000b|0|0
+P_SipProvProfCLIRFromNameA    |0x01910008|0x0000000b|3|3
+P_SipProvProfCLIRFromAddrS    |0x01910009|0x0000000b|3|3
+P_SipProvProfCLIRPrivacy      |0x0191000a|0x0000000b|1|1
+P_SipProvProfileUserEqPhone   |0x0191001f|0x0000000b|0|0
+P_SipProvProfileCOLPsupported |0x01910032|0x0000000b|1|1
+P_SipProvProfCalledPartyN     |0x0191000b|0x0000000b|2|2
+P_SipProvProfCallingPartyN    |0x0191000c|0x0000000b|2|2
+P_SipProvProfCallingParNTON   |0x0191000d|0x0000000b|0|0
+P_SipProvProfileMapProvNumber |0x01910022|0x00000003|false|false
+P_SipProvProfileMappingMode   |0x01910025|0x0000000b|2|2
+P_SipProvProfOutCallingParNTON|0x0191000e|0x0000000b|0|0
+P_SipProvProfInCalledParNTON  |0x0191000f|0x0000000b|0|0
+P_SipProvProfClipNoScreenSupp |0x01910026|0x0000000b|0|0
+P_SipProvProfUseDialNumFormat |0x01910027|0x0000000b|1|1
+P_SipProvProfOutCalledParNTON |0x01910010|0x0000000b|0|0
+P_SipProviderE164NP           |0x01910033|0x0000000b|0|0
+P_SipProvProfRouteType        |0x01910038|0x0000000b|0|0
+P_SipProvProfOut302Allowed    |0x01910039|0x0000000b|0|0
+P_SipProvProfRouteOptimize    |0x0191003a|0x0000000b|0|0
+P_SipProviderMEXSupported     |0x01910034|0x0000000b|0|0
+P_SipProvProfContactUriCont   |0x01910036|0x0000000b|0|0
+P_SipProvProfMultipleRoute    |0x01910037|0x0000000b|0|0
+P_SipProvProfileInChkRedir    |0x0191003b|0x0000000b|0|0
+P_SipProvProfileContactTCPPort|0x0191003e|0x0000000b|0|0
+P_SipProvProfRegFailRetryTime |0x01910028|0x00000008|120|120
+P_SipProvProfRegFailRetryMode |0x01910029|0x0000000b|0|0
+P_SipProvProfRegAfterCallFail |0x0191002a|0x0000000b|0|0
+P_SipProvProfApprovedPeerSel  |0x0191002b|0x0000000b|0|0
+P_SipProvProfUseRouteURIAuth  |0x01910011|0x00000003|true|true
+P_SipProvProfActiveHoldMode   |0x01910012|0x0000000b|0|0
+P_SipProvProfIgnore100Rel     |0x01910013|0x00000003|true|true
+P_SipProvProfSupport100Rel    |0x01910024|0x00000003|false|false
+P_SipProvProfileRegContactAddr|0x01910014|0x0000000b|0|0
+P_SipProvProfileContactUriWith|0x01910015|0x00000003|false|false
+P_SipProvProfileRegBNCinContac|0x01910023|0x0000000b|0|0
+P_SipProvProfileDirectPayload |0x01910016|0x00000003|false|false
+P_SipProvProfileMRAActiv      |0x01910021|0x00000003|true|true
+P_SipProvChangeDirectionAttr  |0x01910035|0x0000000b|0|0
+P_SipProvProfPEarlyMediaHeader|0x01910031|0x0000000b|0|0
+P_SipProvProfileUseViaRPort   |0x01910017|0x00000003|true|true
+P_SipProvProfileUPDATESupporte|0x0191001a|0x00000003|true|true
+P_SipProvProfileSessionTimer  |0x0191002c|0x0000000b|0|0
+P_SipProvProfileProgressTimer |0x0191002d|0x0000000b|0|0
+P_SipProvProfileUdpKeepAlive  |0x0191002e|0x0000000b|1|1
+P_SipProvProfOptKeepAliveTimer|0x0191003d|0x0000000b|60|60
+P_SipProvProfileOptionFailover|0x0191003f|0x0000000b|0|0
+P_SipProvProfAnswer2Options   |0x0191003c|0x0000000b|0|0
+P_SipProvProfRespCodeIndex    |0x01910040|0x0000000b|0|0
+P_SipProvProfiSilenceSupSup   |0x01910041|0x0000000b|1|1
+P_SipProvProfileMediaSecSup   |0x01910042|0x0000000b|0|0
+P_SipProvProfileSDPFilterIndex|0x01910043|0x0000000b|0|0
+P_SipProvProfSupport100RelUAS |0x01910044|0x0000000b|0|0
+P_SipProvProfSwitchBack2Prim  |0x01910045|0x0000000B|0|0

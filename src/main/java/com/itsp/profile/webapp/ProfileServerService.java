@@ -49,8 +49,35 @@ public class ProfileServerService {
         return res;
     }
 
-    public void test()
-    {
+    public ArrayList<String> getAllConfigurationParameters() {
+        ArrayList<String> parameters = new ArrayList<String>();
 
+        try {
+            parameters = this.repo.getConfigurationParameters();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return parameters;
+    }
+
+    public ConfigurationParam getConfigurationParamData(String parameter) {
+        ConfigurationParam paramData = new ConfigurationParam();
+        try {
+            paramData = this.repo.findConfigurationParamByName(parameter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return paramData;
+    }
+
+    public boolean updateConfigurationParamRepo(ConfigurationParam param) {
+        boolean res = true;
+
+        // Profile already exists just update it
+        res = repo.updateConfigurationParamRepo(param);
+
+        return res;
     }
 }
