@@ -56,7 +56,21 @@ public class ConfigurationParam {
     }
 
     public void setParamTypeId(String paramTypeId) {
+
         this.paramTypeId = paramTypeId;
+
+        if(paramTypeId.contentEquals("0x00000003"))
+        {
+            this.viewType = ParamViewType.FLAG;
+        }
+        else if (paramTypeId.contentEquals("0x0000000b"))
+        {
+            this.viewType = ParamViewType.DROPDOWN;
+        }
+        else
+        {
+            this.viewType = ParamViewType.INPUT_TEXT;
+        }
     }
 
     public String getDefaultValue() {

@@ -1,14 +1,16 @@
 package com.itsp.profile.webapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -21,8 +23,39 @@ public class ProfileServerViewController {
         this.profileserverservice = profileserverservice;
     }
 
+    @GetMapping(path="/login")
+    public String login() {
+        System.out.println("Log in first!!!");
+        return "login";
+    }
+
+    @GetMapping(path="/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("Log out");
+        HttpSession session= request.getSession(false);
+        SecurityContextHolder.clearContext();
+        session= request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+        for(Cookie cookie : request.getCookies()) {
+            cookie.setMaxAge(0);
+        }
+
+        return "redirect:/login?logout";
+    }
+
     @GetMapping(path="/index")
     public String index(Model model) {
+        ArrayList<String> profiles = this.profileserverservice.getAllProfiles();
+
+        model.addAttribute("profiles", profiles);
+
+        return "index";
+    }
+
+    @PostMapping(path="/index")
+    public String index_post(Model model) {
         ArrayList<String> profiles = this.profileserverservice.getAllProfiles();
 
         model.addAttribute("profiles", profiles);
