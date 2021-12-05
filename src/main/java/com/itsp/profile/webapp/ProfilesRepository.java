@@ -1,6 +1,7 @@
 package com.itsp.profile.webapp;
 
-import org.springframework.core.io.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Component;
@@ -12,21 +13,39 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Component
 public class ProfilesRepository {
 
+    static final Logger log  = LoggerFactory.getLogger(ProfilesRepository.class);
     private ResourceLoader resourceLoader;
+    private String profiles_path;
+
+    public ProfilesRepository() {
+
+        this.profiles_path = System.getenv("PROFILES_PATH");
+
+        if(this.profiles_path == null)
+        {
+            try {
+                this.profiles_path =  ResourcePatternUtils.getResourcePatternResolver(this.resourceLoader).getResource("classpath:profiles/").getFile().toPath().toString();
+                this.profiles_path += System.getProperty("file.separator");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        log.info("ProfilesRepository created. Reading profiles data from: " + this.profiles_path);
+    }
 
     public Boolean updateProfileRepo(ITSPProfile provider)
     {
-        Path file = Paths.get("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\" + provider.getP_SipProviderName() + ".txt");
+
+        Path file = Paths.get(this.profiles_path + provider.getP_SipProviderName() + ".txt");
         ArrayList<String> lines = new ArrayList<String>();
         String line = provider.toPersistancyString();
-        
+
         lines.add(line);
         try {
             Files.write(file, lines, StandardCharsets.UTF_8);
@@ -47,20 +66,21 @@ public class ProfilesRepository {
 
         ArrayList<String> profiles = new ArrayList<String>();
 
-        try {
-            Resource[] files = ResourcePatternUtils.getResourcePatternResolver(this.resourceLoader).getResources("classpath*:profiles/*.txt");
-            System.out.println(files.length);
 
-            for (int i = 0 ; i < Arrays.stream(files).toArray().length; i++)
+        log.info("Profiles path: " + profiles_path);
+        File folder = new File(profiles_path);
+        File[] listOfFiles = folder.listFiles();
+
+        log.info("Profiles found: " + listOfFiles.length);
+
+        for (File listOfFile : listOfFiles)
+        {
+            log.info(listOfFile.getName());
+            if (listOfFile.getName().contains(".txt"))
             {
-                System.out.println(Arrays.stream(files).toArray()[i].toString());
-                profiles.add(Arrays.stream(files).toArray()[i].toString());
+                profiles.add(profiles_path + listOfFile.getName());
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
 
         return profiles;
     }
@@ -70,17 +90,17 @@ public class ProfilesRepository {
         ArrayList<String> profiles = this.getProfiles();
 
         // Search if the profile exists
-        System.out.println("Profiles size: " + profiles.size());
+        log.info("Profiles size: " + profiles.size());
         for(String prof : profiles)
         {
             if(prof.contains(name))
             {
                 FileInputStream fstream = null;
 
-                String path = prof.substring(prof.indexOf("[") + 1, prof.lastIndexOf("]"));
-                System.out.println(path);
+                //String path = prof.substring(prof.indexOf("[") + 1, prof.lastIndexOf("]"));
+                log.info(prof);
 
-                fstream = new FileInputStream(path);
+                fstream = new FileInputStream(prof);
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
@@ -89,14 +109,15 @@ public class ProfilesRepository {
                 //Read File Line By Line
                 while ((strLine = br.readLine()) != null) {
                     // Print the content on the console - do what you want to do
-                    System.out.println("Read profile line: " + strLine);
+                    log.info("Read profile line: " + strLine);
                     if(!strLine.contentEquals(""))
                     {
                         profile.parseDataFromString(strLine);
                     }
 
                 }
-                    System.out.println(profile);
+
+                log.info(profile.toString());
                     //Close the input stream
                     fstream.close();
             }
@@ -114,8 +135,8 @@ public class ProfilesRepository {
         ArrayList<String> params = new ArrayList<String>();
         FileInputStream fstream = null;
 
-        String path = "C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters";
-        System.out.println(path);
+        String path = this.profiles_path + "param/parameters";
+        log.info(path);
 
         fstream = new FileInputStream(path);
 
@@ -126,14 +147,14 @@ public class ProfilesRepository {
         //Read File Line By Line
         while ((strLine = br.readLine()) != null) {
             // Print the content on the console - do what you want to do
-            System.out.println("Read parameters line: " + strLine);
+            log.info("Read parameters line: " + strLine);
             if(!strLine.contentEquals(""))
             {
                 String[] splitted = strLine.split(" ");
 
                 splitted = splitted[0].split("\\|");
 
-                System.out.println("Splitted: " + Arrays.toString(splitted));
+                log.info("Splitted: " + Arrays.toString(splitted));
                 params.add(splitted[0]);
             }
 
@@ -148,7 +169,7 @@ public class ProfilesRepository {
     public ConfigurationParam findConfigurationParamByName(String parameter) throws IOException {
         ConfigurationParam param = null;
         FileInputStream fstream;
-        String path = "C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters";
+        String path = this.profiles_path + "param/parameters";
 
         fstream = new FileInputStream(path);
 
@@ -159,13 +180,13 @@ public class ProfilesRepository {
         //Read File Line By Line
         while ((strLine = br.readLine()) != null) {
             // Print the content on the console - do what you want to do
-            System.out.println("Read parameters line: " + strLine);
+            log.info("Read parameters line: " + strLine);
             if(!strLine.contentEquals(""))
             {
                 String[] splitted = strLine.split(" ");
                 splitted = splitted[0].split("\\|");
 
-                System.out.println("Splitted: " + Arrays.toString(splitted));
+                log.info("Splitted: " + Arrays.toString(splitted));
                 if(splitted[0].contentEquals(parameter))
                 {
                     param = new ConfigurationParam();
@@ -184,11 +205,11 @@ public class ProfilesRepository {
     public boolean updateConfigurationParamRepo(ConfigurationParam param) {
         //Path file = Paths.get("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters");
         String param_line = param.toPersistancyString();
-        System.out.println("Param persistency string: " + param_line);
+        log.info("Param persistency string: " + param_line);
 
         try {
             // input the (modified) file content to the StringBuffer "input"
-            BufferedReader file = new BufferedReader(new FileReader("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters"));
+            BufferedReader file = new BufferedReader(new FileReader(this.profiles_path + "param/parameters"));
             StringBuffer inputBuffer = new StringBuffer();
             String line;
 
@@ -215,12 +236,12 @@ public class ProfilesRepository {
             file.close();
 
             // write the new string with the replaced line OVER the same file
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\John\\IdeaProjects\\SpringBootTutorial\\src\\main\\resources\\profiles\\parameters");
+            FileOutputStream fileOut = new FileOutputStream(this.profiles_path + "param/parameters");
             fileOut.write(inputBuffer.toString().getBytes());
             fileOut.close();
 
         } catch (Exception e) {
-            System.out.println("Problem reading file.");
+            log.info("Problem reading file.");
         }
 
         return true;

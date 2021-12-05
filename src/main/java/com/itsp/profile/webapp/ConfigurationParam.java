@@ -1,5 +1,8 @@
 package com.itsp.profile.webapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ConfigurationParam {
 
     enum ParamViewType {
@@ -8,6 +11,7 @@ public class ConfigurationParam {
         FLAG
     }
 
+    static final Logger log  = LoggerFactory.getLogger(ConfigurationParam.class);
     private ParamViewType viewType;
     private String paramName;
     private String paramId;
@@ -83,7 +87,7 @@ public class ConfigurationParam {
 
     public void parseFromString(String param)
     {
-        System.out.println("Parsing string: " + param);
+        log.info("Parsing string: " + param);
         String[] values = param.split("\\|");
 
         this.paramName = values[0];

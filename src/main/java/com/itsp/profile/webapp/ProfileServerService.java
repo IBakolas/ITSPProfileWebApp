@@ -1,5 +1,7 @@
 package com.itsp.profile.webapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 
 @Service
 public class ProfileServerService {
+
+    static final Logger log  = LoggerFactory.getLogger(ProfileServerService.class);
 
     @Autowired
     ProfilesRepository repo;
@@ -22,7 +26,7 @@ public class ProfileServerService {
 
         for(String resource : resources)
         {
-            profiles.add(resource.substring(resource.lastIndexOf("\\") + 1).split(".txt")[0]);
+            profiles.add(resource.substring(resource.lastIndexOf(System.getProperty("file.separator")) + 1).split(".txt")[0]);
         }
 
         return profiles;

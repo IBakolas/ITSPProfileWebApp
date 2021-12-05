@@ -1,5 +1,7 @@
 package com.itsp.profile.webapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.InvocationTargetException;
@@ -10,6 +12,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ITSPProfile {
+
+    static final Logger log  = LoggerFactory.getLogger(ITSPProfile.class);
 
     private String P_SipProviderId = "0x1";
 
@@ -1303,7 +1307,7 @@ public class ITSPProfile {
 
         String[] splited = data.split("\\|");
 
-        System.out.println("Splited length: " + splited.length);
+        log.info("Splited length: " + splited.length);
 
         Class curClass = ITSPProfile.class;
         Method[] allMethods = curClass.getMethods();
@@ -1333,11 +1337,11 @@ public class ITSPProfile {
             }
         }
 
-        System.out.println("setters: " + setters.size());
+        log.info("setters: " + setters.size());
         for(int i = 0; i < setters.size(); i++)
         {
             try {
-                System.out.println("Splited: " + splited[i]);
+                log.info("Splited: " + splited[i]);
                 setters.get(i).invoke(this, splited[i]);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
